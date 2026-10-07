@@ -1,0 +1,4 @@
+tail pointer gives direct access to the last node.
+It reduce the traverse time(O(1)) because if we do not have tail pointer,
+ we need to traverse the entire list from the head to find 
+ the last node when appending a new value(O(n)).
