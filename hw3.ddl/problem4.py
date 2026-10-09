@@ -1,58 +1,41 @@
 import sys
 
+def intersect(a,b):
+    x1,y1,x2,y2=a
+    x3,y3,x4,y4=b
 
-def make_line(x1,y1,x2,y2):
-    A=y2-y1
-    B=x1-x2
-    C=A*x1+B*y1
+    dx1=x2-x1
+    dy1=y2-y1
+    dx2=x4-x3
+    dy2=y4-y3
 
-    return A,B,C
+    cross=dx1*dy2-dy1*dx2
 
-
-def lines_cross(line1,line2):
-    A1,B1,C1=line1
-    A2,B2,C2=line2
-
-    det=A1*B2-A2*B1
-
-    if det!=0:
+    if cross!=0:
         return True
 
-    if A1*C2==A2*C1 and B1*C2==B2*C1:
+    if (x3-x1)*dy1-(y3-y1)*dx1==0:
         return True
 
     return False
 
 
-n=int(sys.stdin.readline())
+def check_lines(lines):
+    for i in range(len(lines)):
+        for j in range(i+1,len(lines)):
+            if intersect(lines[i],lines[j]):
+                return False
+    return True
 
+
+n=int(sys.stdin.readline())
 lines=[]
 
 for i in range(n):
-    parts=sys.stdin.readline().split()
+    parts=list(map(float,sys.stdin.readline().split()))
+    lines.append(parts)
 
-    x1=int(parts[1])
-    y1=int(parts[2])
-    x2=int(parts[4])
-    y2=int(parts[5])
-
-    line=make_line(x1,y1,x2,y2)
-    lines.append(line)
-
-
-crossing=False
-
-for i in range(len(lines)):
-    for j in range(i+1,len(lines)):
-        if lines_cross(lines[i],lines[j]):
-            crossing=True
-            break
-
-    if crossing:
-        break
-
-
-if crossing:
-    print("All Ghosts: were not eliminated")
-else:
+if check_lines(lines):
     print("All Ghosts: were eliminated")
+else:
+    print("All Ghosts: were not eliminated")

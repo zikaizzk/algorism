@@ -1,4 +1,4 @@
-
+import sys
 def find_substrings(word,start,end,result):
     if start>=len(word):
         return

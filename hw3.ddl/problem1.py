@@ -1,13 +1,4 @@
 import sys
-count=0
-
-for line in sys.stdin
-line=line.strip()
-
-line=line.replace(" ","")
-
-
-import sys
 
 count=0
 
