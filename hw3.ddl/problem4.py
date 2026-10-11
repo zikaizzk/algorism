@@ -18,7 +18,7 @@ def intersect(a,b):
         return True
 
     return False
-
+   
 
 def check_lines(lines):
     for i in range(len(lines)):
